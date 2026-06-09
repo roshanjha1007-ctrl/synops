@@ -1,0 +1,12 @@
+{
+  "accuracy": 97.5,
+  "flops": 1234567,
+  "energy": 120,
+  "inference_time": 12,
+  "training_loss": [2.31, 1.85, 1.42, 1.10, 0.85, 0.67, 0.54, 0.44, 0.37, 0.31],
+  "model_name": "ANN (MLP)",
+  "layers": 4,
+  "parameters": 407050,
+  "batch_size": 64,
+  "epochs": 10
+}

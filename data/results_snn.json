@@ -1,0 +1,15 @@
+{
+  "accuracy": 96.8,
+  "synops": 245000,
+  "energy": 20,
+  "inference_time": 7,
+  "training_loss": [2.29, 1.90, 1.55, 1.25, 1.01, 0.82, 0.68, 0.57, 0.49, 0.43],
+  "model_name": "SNN (Spiking MLP)",
+  "layers": 4,
+  "parameters": 407050,
+  "batch_size": 64,
+  "epochs": 10,
+  "timesteps": 25,
+  "threshold": 0.5,
+  "spike_rate": 0.042
+}

@@ -1,21 +1,21 @@
 """
-app.py — rsynops dashboard
+app.py - rsynops dashboard
 ANN vs SNN Energy-Efficient MNIST Classification
 Run: streamlit run app.py
 """
 
 import streamlit as st
 
-# ── Page config (must be first Streamlit call) ────────────────────────────────
+# Page config (must be first Streamlit call)
 st.set_page_config(
-    page_title="rsynops · ANN vs SNN",
-    page_icon="⬡",
+    page_title="rsynops - ANN vs SNN",
+    page_icon="R",
     layout="wide",
     initial_sidebar_state="expanded",
 )
 
-# ── Internal imports ──────────────────────────────────────────────────────────
-from utils import load_ann_results, load_snn_results, GLOBAL_CSS
+# Internal imports
+from utils import icon_label, load_ann_results, load_snn_results, GLOBAL_CSS
 from components import (
     render_hero,
     render_metrics_panel,
@@ -32,44 +32,48 @@ from components import (
     radar_chart,
 )
 
-# ── Inject global CSS ─────────────────────────────────────────────────────────
+# Inject global CSS
 st.markdown(GLOBAL_CSS, unsafe_allow_html=True)
 
-# ── Load data (never crashes — falls back to mock) ───────────────────────────
+# Load data (never crashes - falls back to mock)
 ann = load_ann_results("data")
 snn = load_snn_results("data")
 
 
-# ══════════════════════════════════════════════════════════════════════════════
+# =============================================================================
 #  SIDEBAR
-# ══════════════════════════════════════════════════════════════════════════════
+# =============================================================================
 with st.sidebar:
-    st.markdown("""
+    brand_label = icon_label("activity", "rsynops", "#00f5ff", 18)
+    footer_label = icon_label("line-chart", "Built with Streamlit + Plotly", "#00f5ff", 14)
+
+    st.markdown(f"""
     <div style="padding: 8px 0 20px;">
         <div style="
+            display:flex; align-items:center; gap:8px;
             font-family:'Orbitron',monospace;
             font-size:1.25rem; font-weight:900;
             background: linear-gradient(90deg, #00f5ff, #bf5af2);
             -webkit-background-clip:text; -webkit-text-fill-color:transparent;
             background-clip:text;
             margin-bottom:4px;
-        ">rsynops</div>
+        ">{brand_label}</div>
         <div style="
             font-family:'Space Mono',monospace;
             font-size:0.6rem; color:#4b5563;
             letter-spacing:.1em; text-transform:uppercase;
-        ">ANN vs SNN · MNIST</div>
+        ">ANN vs SNN - MNIST</div>
     </div>
     """, unsafe_allow_html=True)
 
     page = st.radio(
         "Navigate",
         options=[
-            "🏠  Project Overview",
-            "🔮  Live Predictions",
-            "⬡  ANN Metrics",
-            "⚡  SNN Metrics",
-            "📊  Comparison Charts",
+            "Project Overview",
+            "Live Predictions",
+            "ANN Metrics",
+            "SNN Metrics",
+            "Comparison Charts",
         ],
         label_visibility="collapsed",
     )
@@ -105,36 +109,36 @@ with st.sidebar:
     _sidebar_stat("SNN SynOps",     f"{snn['synops']//1000}K","#bf5af2")
 
     st.markdown("<hr>", unsafe_allow_html=True)
-    st.markdown("""
+    st.markdown(f"""
     <div style="font-family:'Space Mono',monospace;font-size:0.58rem;
                 color:#374151;text-align:center;line-height:1.8;">
-        Team rsynops · Hackathon 2025<br>
-        <span style="color:#00f5ff22;">⬡</span> Built with Streamlit + Plotly
+        Team rsynops - Hackathon 2025<br>
+        {footer_label}
     </div>
     """, unsafe_allow_html=True)
 
 
-# ══════════════════════════════════════════════════════════════════════════════
+# =============================================================================
 #  PAGES
-# ══════════════════════════════════════════════════════════════════════════════
+# =============================================================================
 
-# ── 1. Project Overview ───────────────────────────────────────────────────────
+# 1. Project Overview
 if "Overview" in page:
     render_hero()
 
-    st.markdown("""
+    st.markdown(f"""
     <div style="font-family:'Orbitron',monospace;font-size:0.78rem;font-weight:700;
                 color:#e2e8f0;letter-spacing:.1em;text-transform:uppercase;
-                margin-bottom:14px;">◈ KPI Summary</div>
+                margin-bottom:14px;">{icon_label("gauge", "KPI Summary", "#00f5ff")}</div>
     """, unsafe_allow_html=True)
     render_kpi_cards(ann, snn)
 
     st.markdown("<br>", unsafe_allow_html=True)
 
-    st.markdown("""
+    st.markdown(f"""
     <div style="font-family:'Orbitron',monospace;font-size:0.78rem;font-weight:700;
                 color:#e2e8f0;letter-spacing:.1em;text-transform:uppercase;
-                margin-bottom:14px;">◈ Model Comparison</div>
+                margin-bottom:14px;">{icon_label("scale", "Model Comparison", "#bf5af2")}</div>
     """, unsafe_allow_html=True)
     render_metrics_panel(ann, snn)
 
@@ -142,10 +146,10 @@ if "Overview" in page:
     render_architecture()
 
     st.markdown("<br>", unsafe_allow_html=True)
-    st.markdown("""
+    st.markdown(f"""
     <div style="font-family:'Orbitron',monospace;font-size:0.78rem;font-weight:700;
                 color:#e2e8f0;letter-spacing:.1em;text-transform:uppercase;
-                margin-bottom:14px;">◈ Results Table</div>
+                margin-bottom:14px;">{icon_label("table", "Results Table", "#00f5ff")}</div>
     """, unsafe_allow_html=True)
     render_results_table(ann, snn)
 
@@ -153,15 +157,15 @@ if "Overview" in page:
     render_conclusion(ann, snn)
 
 
-# ── 2. Live Predictions ───────────────────────────────────────────────────────
+# 2. Live Predictions
 elif "Predictions" in page:
-    st.markdown("""
+    st.markdown(f"""
     <div style="
         font-family:'Orbitron',monospace; font-size:1.3rem; font-weight:700;
         background: linear-gradient(90deg,#00f5ff,#bf5af2);
         -webkit-background-clip:text; -webkit-text-fill-color:transparent;
         background-clip:text; margin-bottom:6px;
-    ">Live Predictions</div>
+    ">{icon_label("scan-eye", "Live Predictions", "#00f5ff", 20)}</div>
     <div style="font-family:'Space Mono',monospace;font-size:0.72rem;color:#4b5563;
                 margin-bottom:24px;">Upload a handwritten digit and run both models.</div>
     """, unsafe_allow_html=True)
@@ -169,29 +173,30 @@ elif "Predictions" in page:
     render_upload_panel()
 
     st.markdown("<br>", unsafe_allow_html=True)
-    st.markdown("""
+    st.markdown(f"""
     <div style="
         background:rgba(255,159,10,0.06); border:1px solid rgba(255,159,10,0.2);
         border-radius:12px; padding:14px 18px;
         font-family:'Space Mono',monospace; font-size:0.72rem; color:#ff9f0a;
         line-height:1.7;
     ">
-        ⚠️  <strong>Note:</strong> Inference results shown here are <em>placeholder mocks</em>.
-        Connect real trained models by editing <code>utils/inference.py</code> →
+        {icon_label("circle-alert", "Note:", "#ff9f0a", 15)}
+        Inference results shown here are <em>placeholder mocks</em>.
+        Connect real trained models by editing <code>utils/inference.py</code> -
         <code>run_ann_inference()</code> and <code>run_snn_inference()</code>.
     </div>
     """, unsafe_allow_html=True)
 
 
-# ── 3. ANN Metrics ────────────────────────────────────────────────────────────
+# 3. ANN Metrics
 elif "ANN" in page:
-    st.markdown("""
+    st.markdown(f"""
     <div style="
         font-family:'Orbitron',monospace; font-size:1.3rem; font-weight:700;
         color:#00f5ff; margin-bottom:6px;
-    ">ANN Metrics</div>
+    ">{icon_label("cpu", "ANN Metrics", "#00f5ff", 20)}</div>
     <div style="font-family:'Space Mono',monospace;font-size:0.72rem;color:#4b5563;
-                margin-bottom:24px;">Artificial Neural Network — detailed performance breakdown.</div>
+                margin-bottom:24px;">Artificial Neural Network - detailed performance breakdown.</div>
     """, unsafe_allow_html=True)
 
     c1, c2, c3, c4 = st.columns(4, gap="small")
@@ -211,23 +216,23 @@ elif "ANN" in page:
     st.plotly_chart(training_loss_line(ann, snn), use_container_width=True)
 
     st.markdown("<br>", unsafe_allow_html=True)
-    st.markdown("""
+    st.markdown(f"""
     <div style="font-family:'Orbitron',monospace;font-size:0.78rem;font-weight:700;
                 color:#e2e8f0;letter-spacing:.1em;text-transform:uppercase;
-                margin-bottom:14px;">◈ Full Metrics</div>
+                margin-bottom:14px;">{icon_label("list-checks", "Full Metrics", "#00f5ff")}</div>
     """, unsafe_allow_html=True)
     render_results_table(ann, snn)
 
 
-# ── 4. SNN Metrics ────────────────────────────────────────────────────────────
+# 4. SNN Metrics
 elif "SNN" in page:
-    st.markdown("""
+    st.markdown(f"""
     <div style="
         font-family:'Orbitron',monospace; font-size:1.3rem; font-weight:700;
         color:#bf5af2; margin-bottom:6px;
-    ">SNN Metrics</div>
+    ">{icon_label("zap", "SNN Metrics", "#bf5af2", 20)}</div>
     <div style="font-family:'Space Mono',monospace;font-size:0.72rem;color:#4b5563;
-                margin-bottom:24px;">Spiking Neural Network — neuromorphic performance breakdown.</div>
+                margin-bottom:24px;">Spiking Neural Network - neuromorphic performance breakdown.</div>
     """, unsafe_allow_html=True)
 
     c1, c2, c3, c4 = st.columns(4, gap="small")
@@ -252,10 +257,10 @@ elif "SNN" in page:
     st.plotly_chart(training_loss_line(ann, snn), use_container_width=True)
 
     st.markdown("<br>", unsafe_allow_html=True)
-    st.markdown("""
+    st.markdown(f"""
     <div style="font-family:'Orbitron',monospace;font-size:0.78rem;font-weight:700;
                 color:#e2e8f0;letter-spacing:.1em;text-transform:uppercase;
-                margin-bottom:14px;">◈ Full Metrics</div>
+                margin-bottom:14px;">{icon_label("list-checks", "Full Metrics", "#bf5af2")}</div>
     """, unsafe_allow_html=True)
     render_results_table(ann, snn)
 
@@ -263,17 +268,17 @@ elif "SNN" in page:
     render_conclusion(ann, snn)
 
 
-# ── 5. Comparison Charts ──────────────────────────────────────────────────────
+# 5. Comparison Charts
 elif "Charts" in page:
-    st.markdown("""
+    st.markdown(f"""
     <div style="
         font-family:'Orbitron',monospace; font-size:1.3rem; font-weight:700;
         background: linear-gradient(90deg,#00f5ff,#bf5af2);
         -webkit-background-clip:text; -webkit-text-fill-color:transparent;
         background-clip:text; margin-bottom:6px;
-    ">Comparison Charts</div>
+    ">{icon_label("bar-chart-3", "Comparison Charts", "#00f5ff", 20)}</div>
     <div style="font-family:'Space Mono',monospace;font-size:0.72rem;color:#4b5563;
-                margin-bottom:24px;">Interactive Plotly visualisations — ANN vs SNN.</div>
+                margin-bottom:24px;">Interactive Plotly visualisations - ANN vs SNN.</div>
     """, unsafe_allow_html=True)
 
     tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs([
