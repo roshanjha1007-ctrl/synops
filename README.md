@@ -1,6 +1,6 @@
 # rsynops - ANN vs SNN MNIST Dashboard
 
-> Energy-Efficient MNIST Classification - Hackathon 2025
+> Energy-Efficient MNIST Classification
 
 A production-quality **Streamlit** dashboard that benchmarks Artificial Neural Networks (ANN) against Spiking Neural Networks (SNN) on the MNIST handwritten-digit dataset, with a focus on **energy consumption**, inference latency, and computational cost.
 
@@ -111,4 +111,4 @@ The dashboard **never crashes** - if JSON files are missing or malformed, mock d
 
 ---
 
-## Team rsynops - Hackathon 2025
+## Team synops 
