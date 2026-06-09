@@ -1,15 +1,75 @@
 {
-  "accuracy": 96.8,
-  "synops": 245000,
-  "energy": 20,
-  "inference_time": 7,
-  "training_loss": [2.29, 1.90, 1.55, 1.25, 1.01, 0.82, 0.68, 0.57, 0.49, 0.43],
-  "model_name": "SNN (Spiking MLP)",
-  "layers": 4,
-  "parameters": 407050,
-  "batch_size": 64,
   "epochs": 10,
-  "timesteps": 25,
-  "threshold": 0.5,
-  "spike_rate": 0.042
+  "num_steps": 25,
+  "batch_size": 128,
+  "hidden_size": 1000,
+  "beta": 0.95,
+  "learning_rate": 0.001,
+  "device": "cuda",
+  "epoch_logs": [
+    {
+      "epoch": 1,
+      "loss": 1.625225,
+      "train_accuracy": 0.831983,
+      "test_accuracy": 0.9501
+    },
+    {
+      "epoch": 2,
+      "loss": 1.508709,
+      "train_accuracy": 0.955067,
+      "test_accuracy": 0.9567
+    },
+    {
+      "epoch": 3,
+      "loss": 1.501732,
+      "train_accuracy": 0.962067,
+      "test_accuracy": 0.9629
+    },
+    {
+      "epoch": 4,
+      "loss": 1.498015,
+      "train_accuracy": 0.96515,
+      "test_accuracy": 0.9608
+    },
+    {
+      "epoch": 5,
+      "loss": 1.496351,
+      "train_accuracy": 0.967233,
+      "test_accuracy": 0.965
+    },
+    {
+      "epoch": 6,
+      "loss": 1.494177,
+      "train_accuracy": 0.968333,
+      "test_accuracy": 0.9629
+    },
+    {
+      "epoch": 7,
+      "loss": 1.492588,
+      "train_accuracy": 0.969333,
+      "test_accuracy": 0.9681
+    },
+    {
+      "epoch": 8,
+      "loss": 1.492393,
+      "train_accuracy": 0.969283,
+      "test_accuracy": 0.9688
+    },
+    {
+      "epoch": 9,
+      "loss": 1.490959,
+      "train_accuracy": 0.970183,
+      "test_accuracy": 0.9663
+    },
+    {
+      "epoch": 10,
+      "loss": 1.489264,
+      "train_accuracy": 0.970917,
+      "test_accuracy": 0.9637
+    }
+  ],
+  "final_loss": 1.489264,
+  "final_train_accuracy": 0.970917,
+  "final_test_accuracy": 0.9637,
+  "avg_synops": 2900753.14
 }

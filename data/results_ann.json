@@ -1,12 +1,82 @@
 {
-  "accuracy": 97.5,
-  "flops": 1234567,
-  "energy": 120,
-  "inference_time": 12,
-  "training_loss": [2.31, 1.85, 1.42, 1.10, 0.85, 0.67, 0.54, 0.44, 0.37, 0.31],
-  "model_name": "ANN (MLP)",
-  "layers": 4,
-  "parameters": 407050,
-  "batch_size": 64,
-  "epochs": 10
+  "model": "3-layer MLP",
+  "dataset": "MNIST",
+  "epochs": 10,
+  "batch_size": 256,
+  "learning_rate": 0.001,
+  "optimizer": "Adam",
+  "device": "cpu",
+  "best_val_acc": 98.42,
+  "history": [
+    {
+      "epoch": 1,
+      "train_loss": 0.248337,
+      "train_acc": 93.1367,
+      "val_loss": 0.100407,
+      "val_acc": 97.08
+    },
+    {
+      "epoch": 2,
+      "train_loss": 0.099715,
+      "train_acc": 96.9883,
+      "val_loss": 0.071259,
+      "val_acc": 97.72
+    },
+    {
+      "epoch": 3,
+      "train_loss": 0.072152,
+      "train_acc": 97.7933,
+      "val_loss": 0.065193,
+      "val_acc": 98.03
+    },
+    {
+      "epoch": 4,
+      "train_loss": 0.054603,
+      "train_acc": 98.26,
+      "val_loss": 0.061201,
+      "val_acc": 98.07
+    },
+    {
+      "epoch": 5,
+      "train_loss": 0.043991,
+      "train_acc": 98.535,
+      "val_loss": 0.058073,
+      "val_acc": 98.27
+    },
+    {
+      "epoch": 6,
+      "train_loss": 0.02759,
+      "train_acc": 99.1183,
+      "val_loss": 0.051877,
+      "val_acc": 98.29
+    },
+    {
+      "epoch": 7,
+      "train_loss": 0.021765,
+      "train_acc": 99.3333,
+      "val_loss": 0.04918,
+      "val_acc": 98.42
+    },
+    {
+      "epoch": 8,
+      "train_loss": 0.01816,
+      "train_acc": 99.44,
+      "val_loss": 0.054,
+      "val_acc": 98.31
+    },
+    {
+      "epoch": 9,
+      "train_loss": 0.01806,
+      "train_acc": 99.4633,
+      "val_loss": 0.055567,
+      "val_acc": 98.38
+    },
+    {
+      "epoch": 10,
+      "train_loss": 0.016065,
+      "train_acc": 99.4833,
+      "val_loss": 0.053933,
+      "val_acc": 98.4
+    }
+  ]
 }
