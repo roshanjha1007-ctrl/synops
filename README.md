@@ -1,4 +1,4 @@
-# rsynops - ANN vs SNN MNIST Dashboard
+# synops - ANN vs SNN MNIST Dashboard
 
 > Energy-Efficient MNIST Classification
 
